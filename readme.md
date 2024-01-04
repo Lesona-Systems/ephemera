@@ -1,0 +1,1 @@
+Speedy, low-security, in-and-out temporary password generation. Probably shouldn't use this for anything. Ever.
