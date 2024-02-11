@@ -39,23 +39,29 @@ def generate():
             password = password + x 
             
     final_password.set(password)
+    copy_confirmation.set('')
+    
 def copy_to_clipboard():
     root.clipboard_clear()
     root.clipboard_append(final_password.get())
+    copy_confirmation.set('Copied!')
 
 root = Tk()
 root.title("Ephemera")
 
-mainframe = ttk.Frame(root, padding="3 3 12 12")
-mainframe.grid(column=0, row=0, sticky=(N, W, W, S))
+mainframe = ttk.Frame(root, padding="20 20 20 20", borderwidth=2, relief='sunken')
+mainframe.grid(column=0, row=0, sticky=N)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
 final_password = StringVar()
-password_return = ttk.Entry(mainframe, textvariable=final_password).grid(column=2, row=2, sticky=N)
+copy_confirmation = StringVar()
+password_return = ttk.Label(mainframe, textvariable=final_password).grid(column=2, row=1, sticky=N)
 
-ttk.Button(mainframe,text="Generate PW", command=generate).grid(column=2, row=3, sticky=N)
-ttk.Button(mainframe,text="Copy to Clipboard", command=copy_to_clipboard).grid(column=2, row=4, sticky=N)
+ttk.Button(mainframe,text="Generate PW", command=generate).grid(column=2, row=2, sticky=N)
+ttk.Button(mainframe,text="Copy to Clipboard", command=copy_to_clipboard).grid(column=2, row=3, sticky=N)
+copy_success_label = ttk.Label(mainframe, textvariable=copy_confirmation).grid(column=2, row=4, sticky=N)
+
 
 for child in mainframe.winfo_children():
      child.grid_configure(padx=5, pady=5)
