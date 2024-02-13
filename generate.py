@@ -58,21 +58,24 @@ def get_clipboard():
 
 root = Tk()
 root.title("Ephemera")
-
-mainframe = ttk.Frame(root, padding="20 20 20 20", borderwidth=2, relief='sunken')
-mainframe.grid(column=0, row=0, sticky=N)
 root.minsize(400, 400)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
+mainframe = ttk.Frame(root, padding="20 20 20 20", borderwidth=2, relief='sunken')
+mainframe.grid(column=0, row=0, sticky=N)
 
+# Clipboard Display
+# Column 1
+# clipboard_frame = ttk.Frame(mainframe, padding="5 5 5 5", borderwidth=2, relief='solid')
 clipboard_contents = StringVar()
 
 clipboard_contents_label = ttk.Label(mainframe, textvariable=clipboard_contents, state='readonly').grid(column=1, row=1, sticky=N)
-ttk.Button(mainframe,text="Get CB", command=get_clipboard).grid(column=1, row=2, sticky=N)
+ttk.Button(mainframe, text="Get CB", command=get_clipboard).grid(column=1, row=2, sticky=N)
 
 
 # Temp Password Gen
+# Column 2
 final_password = StringVar()
 copy_confirmation = StringVar()
 
